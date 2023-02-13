@@ -2,9 +2,13 @@
 
 This is a typescript project using graphql and expressjs for providing backend service for POC project.
 
+Checkout the live project demo <a href="https://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
+
 ## Here's how it looks-like
 
-https://user-images.githubusercontent.com/78212328/192308708-fc012b4d-d642-447f-903e-9e0aec44c69f.mp4
+![image](https://user-images.githubusercontent.com/78212328/218540999-de800d67-f0ba-4201-b273-baf9eb08b534.png)
+
+![image](https://user-images.githubusercontent.com/78212328/218540027-e8734eca-951a-41ed-ae9b-4fe1a55fdf7f.png)
 
 ## How to Run the project on your Device
 
