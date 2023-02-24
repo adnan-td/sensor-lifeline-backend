@@ -1,11 +1,8 @@
-import multer from "multer"
+import multer from "multer";
 import path from "path";
-import log4js from "../../log4js"
-
+import log4js from "../../log4js";
 
 var logger = log4js.getLogger("log");
-
-const maxSize10 = 1 * 1024 * 1024 * 10;
 
 export const upload = multer({
   storage: multer.diskStorage({
@@ -17,7 +14,7 @@ export const upload = multer({
     },
   }),
   limits: {
-    fileSize: 1 * 1024 * + (process.env.FILE_SIZE || 0) ? 1 * 1024 * + (process.env.FILE_SIZE || 0) : maxSize10,
+    fileSize: 1 * 1024 * parseInt(process.env.FILE_SIZE || ""),
   },
 }).single("uploadimg");
 

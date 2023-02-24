@@ -1,7 +1,7 @@
-import http from "http"
-import app from "./src/app"
+import http from "http";
+import app from "./src/app";
 import db from "./src/sequelize";
-// import TestingData from "./src/testing";
+// import TestingData from "./src/populate_sample.ts";
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
@@ -19,7 +19,7 @@ async function startServer() {
 //   startServer();
 // })
 
-db.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then(function () {
+db.query("SET FOREIGN_KEY_CHECKS = 0", { raw: true }).then(function () {
   db.sync().then(function () {
     // TestingData()
     startServer();
