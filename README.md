@@ -10,11 +10,18 @@ Checkout the live project demo <a href="https://poc.adnanshusain.in/graphql">poc
 
 ![image](https://user-images.githubusercontent.com/78212328/218540027-e8734eca-951a-41ed-ae9b-4fe1a55fdf7f.png)
 
-## How to Run the project on your Device
+## Installation of Project
 
-First step is install latest version of Nodejs on your device.\
-Clone/fork the repository or download zipped code files.\
-In the project directory, you can run:
+1. Clone/fork the repository\
+2. Install Nodejs on your device\
+3. Install Docker (Skip - if mysql already installed)\
+4. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file\
+   In the project directory, you can run:
+
+### `yarn dockerup`
+
+Creates the network for `mysql` data base along with `phpmyadmin`. Access phpmyadmin at <a href="http://localhost:8080/">localhost:8080/</a>\
+Skip docker command if database URI is available
 
 ### `yarn install`
 
@@ -39,3 +46,6 @@ Starts the server.js file, created by the build command, in production mode.
 
 Stops the production server if any at all is running.
 
+### `yarn dockerdown`
+
+Shuts down the running docker containers.

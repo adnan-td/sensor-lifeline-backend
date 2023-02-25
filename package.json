@@ -5,6 +5,8 @@
   "scripts": {
     "start": "pm2 start ./dist/server.js",
     "stop": "pm2 stop all",
+    "dockerup": "docker-compose -f docker.yaml up -d",
+    "dockerdown": "docker-compose -f docker.yaml down",
     "dev": "nodemon ./server.ts",
     "build": "tsc -p ."
   },

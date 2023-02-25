@@ -1,5 +1,6 @@
 import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList } from "graphql";
 import { AllergiesList } from "../../models/allergies";
+import { BloodGroup } from "../../models/blood_group";
 import { Visits } from "../../models/visits";
 import { AllergyListType } from "./allergies";
 import { BloodGroupType } from "./blood_group";
@@ -17,16 +18,25 @@ export const PatientType = new GraphQLObjectType({
     mother_name: { type: GraphQLString },
     address: { type: GraphQLString },
     date_of_birth: { type: GraphQLString },
-    blood_group: { type: BloodGroupType },
+    blood_group: {
+      type: BloodGroupType,
+      resolve: (patient) => {
+        return BloodGroup.findOne({
+          where: {
+            id: patient.blood_group,
+          },
+        });
+      },
+    },
     allergies: {
       type: new GraphQLList(AllergyListType),
       resolve: (patient) => {
         return AllergiesList.findAll({
           where: {
-            patient_id: patient.id
-          }
-        })
-      }
+            patient_id: patient.id,
+          },
+        });
+      },
     },
     current_weight: { type: GraphQLString },
     current_height: { type: GraphQLString },
@@ -39,10 +49,10 @@ export const PatientType = new GraphQLObjectType({
       resolve: (patient) => {
         return Visits.findAll({
           where: {
-            patient: patient.id
-          }
-        })
-      }
-    }
+            patient: patient.id,
+          },
+        });
+      },
+    },
   }),
 });
