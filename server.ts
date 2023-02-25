@@ -13,17 +13,17 @@ async function startServer() {
 }
 
 db.query("show tables").then(function (rows) {
-  let tables = JSON.stringify(rows);
-  if (tables[0].length) {
+  if (rows[0].length) {
     db.sync().then(function () {
       startServer();
     });
   } else {
-    db.dropAllSchemas({});
-    db.query("SET FOREIGN_KEY_CHECKS = 0", { raw: true }).then(function () {
-      db.sync({ force: true }).then(function () {
-        TestingData();
-        startServer();
+    db.dropAllSchemas({}).then(() => {
+      db.query("SET FOREIGN_KEY_CHECKS = 0", { raw: true }).then(() => {
+        db.sync({ force: true }).then(function () {
+          TestingData();
+          startServer();
+        });
       });
     });
   }
