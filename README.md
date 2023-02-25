@@ -2,7 +2,7 @@
 
 This is a typescript project using graphql and expressjs for providing backend service for POC project.
 
-Checkout the live project demo <a href="https://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
+Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
 
 ## Here's how it looks-like
 
@@ -12,16 +12,17 @@ Checkout the live project demo <a href="https://poc.adnanshusain.in/graphql">poc
 
 ## Installation of Project
 
-1. Clone/fork the repository\
-2. Install Nodejs on your device\
-3. Install Docker (Skip - if mysql already installed)\
-4. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file\
-   In the project directory, you can run:
+1. Clone/fork the repository
+2. Install Nodejs on your device
+3. Install Docker (Skip - if mysql already installed)
+4. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file
+
+In the project directory, you can run:
 
 ### `yarn dockerup`
 
-Creates the network for `mysql` data base along with `phpmyadmin`. Access phpmyadmin at <a href="http://localhost:8080/">localhost:8080/</a>\
-Skip docker command if database URI is available
+Creates the docker network for `mysql` data base along with `phpmyadmin`. Access phpmyadmin at <a href="http://localhost:8080/">localhost:8080</a>\
+Skip docker command if database URI is available.
 
 ### `yarn install`
 
@@ -30,7 +31,7 @@ Runs the yarn package manager to install all the dependencies of the project. If
 ### `yarn dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
 
