@@ -2,7 +2,7 @@
 
 This is a typescript project using graphql and expressjs for providing backend service for POC project.
 
-Checkout the live project demo <a href="www.poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
+Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
 
 ## Here's how it looks-like
 
