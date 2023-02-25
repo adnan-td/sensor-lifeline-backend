@@ -13,6 +13,7 @@
 /public
 /admin
 /scripthome
+/dist
 
 # misc
 .DS_Store
