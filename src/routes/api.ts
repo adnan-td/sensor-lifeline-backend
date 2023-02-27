@@ -9,8 +9,9 @@ api.get("/", (req, res) =>
     message: "Welcome to POC backend Project",
     status: "200(okay), running",
     "available routes": [
-      "/images (for images)",
+      "/graphql (for apollo sandbox)",
       "/upload (for images uploads)",
+      "/images (for images)",
       "/ecgtopdf (for ecg graph pdf)",
     ],
   })
