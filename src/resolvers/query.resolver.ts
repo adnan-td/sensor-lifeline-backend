@@ -21,13 +21,34 @@ export const Query: QueryResolvers = {
   prescription: () => {
     return Prescription.findAll();
   },
-  visits: () => {
+  visits: (_, args) => {
+    if (args.id) {
+      return Visits.findAll({
+        where: {
+          id: args.id,
+        },
+      });
+    }
     return Visits.findAll();
   },
-  patients: () => {
+  patients: (_, args) => {
+    if (args.id) {
+      return Patient.findAll({
+        where: {
+          id: args.id,
+        },
+      });
+    }
     return Patient.findAll();
   },
-  doctors: () => {
+  doctors: (_, args) => {
+    if (args.id) {
+      return Doctors.findAll({
+        where: {
+          id: args.id,
+        },
+      });
+    }
     return Doctors.findAll();
   },
   visits_by_doctor: (_, arg) => {

@@ -21,7 +21,6 @@ export const Patient = db.define(
     },
     aadhar: {
       type: DataTypes.STRING(12),
-      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -38,27 +37,17 @@ export const Patient = db.define(
     },
     address: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     date_of_birth: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
     blood_group: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: BloodGroup,
         key: "id",
       },
     },
-    // allergies: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: AllergiesList,
-    //     key: "id",
-    //   }
-    // },
     current_weight: {
       type: DataTypes.STRING(45),
     },
@@ -77,13 +66,6 @@ export const Patient = db.define(
     state: {
       type: DataTypes.STRING(45),
     },
-    // visits: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: PatientVisits,
-    //     key: "id"
-    //   }
-    // }
   },
   {}
 );

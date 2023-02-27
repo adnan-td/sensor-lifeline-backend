@@ -10,7 +10,6 @@ const config: CodegenConfig = {
       config: {
         enumsAsTypes: true,
         optionalInfoArgument: true,
-        makeResolverTypeCallable: true,
         mappers: {
           blood_group: "src/models/blood_group#BloodGroup",
           allergy: "src/models/allergies#Allergies",
@@ -22,6 +21,7 @@ const config: CodegenConfig = {
           patient_test: "src/models/tests#TestsList",
           visit: "src/models/visits#Visits",
           patient: "src/models/patient#Patient",
+          user: "src/models/user#Users",
         },
         useTypeImports: true,
       },

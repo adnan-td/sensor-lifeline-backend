@@ -1,6 +1,7 @@
 import { Allergies, AllergiesList } from "../models/allergies";
 import { BloodGroup } from "../models/blood_group";
 import { Doctors } from "../models/doctor";
+import { Patient } from "../models/patient";
 import { Prescription, PrescriptionList } from "../models/prescriptions";
 import { Tests, TestsList } from "../models/tests";
 import { Visits } from "../models/visits";
@@ -26,6 +27,13 @@ export const allResolvers: Resolvers = {
       return Doctors.findOne({
         where: {
           id: parent.doctor_visited,
+        },
+      });
+    },
+    patient: (parent) => {
+      return Patient.findOne({
+        where: {
+          id: parent.patient,
         },
       });
     },

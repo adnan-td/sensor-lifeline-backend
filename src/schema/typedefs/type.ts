@@ -1,6 +1,12 @@
 import { gql } from "apollo-server-express";
 
 export const AllTypes = gql`
+  type user {
+    id: ID!
+    email: String!
+    role: String!
+  }
+
   type blood_group {
     id: ID!
     name: String!
@@ -52,7 +58,7 @@ export const AllTypes = gql`
 
   type visit {
     id: ID!
-    patient: ID!
+    patient: patient
     date: String
     weight: String
     height: String
