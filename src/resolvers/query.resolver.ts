@@ -1,5 +1,4 @@
 import { QueryResolvers } from "../types/graphql";
-
 import { Allergies } from "../models/allergies";
 import { BloodGroup } from "../models/blood_group";
 import { Doctors } from "../models/doctor";
@@ -7,6 +6,7 @@ import { Patient } from "../models/patient";
 import { Prescription } from "../models/prescriptions";
 import { Tests } from "../models/tests";
 import { Visits } from "../models/visits";
+import { isAuthenticatedResolver, loginResolver, logoutResolver, registerResolver } from "./auth";
 
 export const Query: QueryResolvers = {
   blood_groups: () => {
@@ -58,4 +58,8 @@ export const Query: QueryResolvers = {
       },
     });
   },
+  register: registerResolver,
+  login: loginResolver,
+  isAuthenticated: isAuthenticatedResolver,
+  logout: logoutResolver,
 };

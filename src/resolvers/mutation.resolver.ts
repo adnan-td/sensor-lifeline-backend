@@ -1,147 +1,76 @@
-import { Users } from "../models/user";
+import { Allergies, AllergiesList } from "../models/allergies";
+import { Prescription, PrescriptionList } from "../models/prescriptions";
+import { Tests, TestsList } from "../models/tests";
+import { Visits } from "../models/visits";
 import { MutationResolvers } from "../types/graphql";
-import * as bcrypt from "bcrypt";
-import { accessOptions, createTokens, refreshOptions } from "../auth";
-import { Doctors } from "../models/doctor";
-import { Patient } from "../models/patient";
+import { doctorMutation } from "./mutation/doctor";
+import { patientMutation } from "./mutation/patient";
+import { addIntoModel, deleteModel, updateModel } from "./utils";
 
 export const Mutation: MutationResolvers = {
-  register: async (parent, { email, password, role }) => {
-    if (isValidEmail(email) && isValidPassword(password)) {
-      const isNew = !(await Users.findOne({
-        where: {
-          email: email,
-        },
-      }));
-      if (isNew) {
-        const encryptedpassword = await bcrypt.hash(password, 10);
-        console.log(email, password, encryptedpassword);
-        const data = role
-          ? await Users.create({ email, password: encryptedpassword, role })
-          : await Users.create({ email, password: encryptedpassword });
-
-        return userResponse(200, true, "Registered Successfully", data);
-      }
-      return userResponse(400, false, "User already exists!");
-    }
-    return userResponse(400, false, "Enter Valid email and password!");
+  ...doctorMutation,
+  ...patientMutation,
+  addAllergy: async (parent, data) => {
+    return addIntoModel(Allergies, data);
   },
-  login: async (parent, { email, password }, { res }) => {
-    const user = await Users.findOne({
-      where: {
-        email: email,
-      },
-    });
-    if (!user) return userResponse(400, false, "User does not exist!");
-    const isMatching = await bcrypt.compare(password, user.dataValues.password);
-    if (!isMatching) return userResponse(400, false, "Password does not match!");
-
-    const { refreshToken, accessToken } = createTokens({
-      id: user.dataValues.id,
-      email: user.dataValues.email,
-      role: user.dataValues.role,
-    });
-
-    res.cookie("refresh-token", refreshToken, refreshOptions);
-    res.cookie("access-token", accessToken, accessOptions);
-
-    return userResponse(200, true, "Login was Successful!", user.dataValues);
+  updateAllergy: async (parent, data) => {
+    return updateModel(Allergies, data);
+  },
+  deleteAllergy: async (parent, { id }) => {
+    return deleteModel(Allergies, id);
+  },
+  addPatientAllergy: async (parent, data) => {
+    return addIntoModel(AllergiesList, data);
+  },
+  updatePatientAllergy: async (parent, data) => {
+    return updateModel(AllergiesList, data);
+  },
+  deletePatientAllergy: async (parent, { id }) => {
+    return deleteModel(AllergiesList, id);
   },
 
-  isAuthenticated: async (parent, args, { user }) => {
-    if (user) {
-      return user;
-    }
-    return null;
+  addTest: async (parent, data) => {
+    return addIntoModel(Tests, data);
+  },
+  updateTest: async (parent, data) => {
+    return updateModel(Tests, data);
+  },
+  deleteTest: async (parent, { id }) => {
+    return deleteModel(Tests, id);
+  },
+  addVisitTest: async (parent, data) => {
+    return addIntoModel(TestsList, data);
+  },
+  updateVisitTest: async (parent, data) => {
+    return updateModel(TestsList, data);
+  },
+  deleteVisitTest: async (parent, { id }) => {
+    return deleteModel(TestsList, id);
   },
 
-  logout: async (parent, args, { res }) => {
-    res.clearCookie("access-token");
-    res.clearCookie("refresh-token");
-    return "Logged out Successfully!";
+  addPrescription: async (parent, data) => {
+    return addIntoModel(Prescription, data);
+  },
+  updatePrescription: async (parent, data) => {
+    return updateModel(Prescription, data);
+  },
+  deletePrescription: async (parent, { id }) => {
+    return deleteModel(Prescription, id);
+  },
+  addVisitPrescription: async (parent, data) => {
+    return addIntoModel(PrescriptionList, data);
+  },
+  updateVisitPrescription: async (parent, data) => {
+    return updateModel(PrescriptionList, data);
+  },
+  deleteVisitPrescription: async (parent, { id }) => {
+    return deleteModel(PrescriptionList, id);
   },
 
-  addDoctor: async (parent, data) => {
-    if (await isValidEmailAndNew(data.email, Doctors)) {
-      const doctor = await Doctors.create(data);
-      return response(true, "Added!");
-    }
-    return response(false, "Invalid email or email is taken already");
+  addVisit: async (parent, data) => {
+    return addIntoModel(Visits, data);
   },
-
-  updateDoctor: async (parent, data) => {
-    const doctor = await Doctors.findOne({
-      where: {
-        id: data.id,
-      },
-    });
-
-    if (!doctor) return response(false, "Does not exist!");
-
-    if (data.email && !(await isValidEmailAndNew(data.email, Doctors))) {
-      return response(false, "Invalid email or email is taken already");
-    }
-
-    await doctor?.update(data);
-    return response(true, "Updated!");
-  },
-
-  addPatient: async (parent, data) => {
-    if (await isValidEmailAndNew(data.email, Patient)) {
-      const patientData = { ...data, uid: "" + new Date().getTime() };
-      const patient = await Patient.create(patientData);
-      return response(true, "Added!");
-    }
-    return response(false, "Invalid email or email is taken already");
-  },
-
-  updatePatient: async (parent, data) => {
-    const patient = await Patient.findOne({
-      where: {
-        id: data.id,
-      },
-    });
-    if (!patient) return response(false, "Does not exist!");
-    if (data.email && !(await isValidEmailAndNew(data.email, Patient)))
-      return response(false, "Invalid Email");
-    await patient?.update(data);
-    return response(true, "Updated");
+  updateVisit: async (parent, data) => {
+    return updateModel(Visits, data);
   },
 };
-
-function isValidEmail(email: string): boolean {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
-function isValidPassword(password: string): boolean {
-  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-  return process.env.NODE_ENV === "production" ? regex.test(password) : true;
-}
-
-async function isValidEmailAndNew(email: string | null, model: any) {
-  if (!isValidEmail(email || "")) return false;
-  const isNew = !(await model.findOne({
-    where: {
-      email: email,
-    },
-  }));
-  if (isNew) return true;
-  return false;
-}
-
-function userResponse(code: number, success: boolean, message: string, data: any = null) {
-  return {
-    code: code,
-    success: success,
-    message: message,
-    data: data,
-  };
-}
-
-function response(success: boolean, message: string) {
-  return {
-    success: success,
-    message: message,
-  };
-}

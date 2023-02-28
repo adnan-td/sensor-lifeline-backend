@@ -2,10 +2,6 @@ import { gql } from "apollo-server-express";
 
 export const Mutations = gql`
   type Mutation {
-    register(email: String!, password: String!, role: String): userResponse
-    login(email: String!, password: String!): userResponse
-    isAuthenticated: user
-    logout: String
     addDoctor(name: String!, email: String!, branch: String!): response
     updateDoctor(id: Int!, name: String, email: String, branch: String): response
     addPatient(
@@ -42,33 +38,50 @@ export const Mutations = gql`
       state: String
     ): response
 
-    upsertAllergy: String
-    deleteAllergy: String
+    addAllergy(name: String): response
+    updateAllergy(id: Int!, name: String!): response
+    deleteAllergy(id: Int!): response
 
-    upsertPatientAllergy: String
-    deletePatientAllergy: String
+    addPatientAllergy(patient_id: Int!, allergy: Int!): response
+    updatePatientAllergy(id: Int!, patient_id: Int, allergy: Int): response
+    deletePatientAllergy(id: Int!): response
 
-    upsertTest: String
-    deleteTest: String
+    addTest(name: String): response
+    updateTest(id: Int!, name: String!): response
+    deleteTest(id: Int!): response
 
-    upsertVisitTest: String
-    deleteVisitTest: String
+    addVisitTest(visit_id: Int!, test: Int!, comments: String, date: String!): response
+    updateVisitTest(id: Int!, test: Int, comments: String, date: String): response
+    deleteVisitTest(id: Int!): response
 
-    upsertPrescription: String
-    deletePrescription: String
+    addPrescription(drug: String!, dosage: String!, interval: String!): response
+    updatePrescription(id: Int!, drug: String, dosage: String, interval: String): response
+    deletePrescription(id: Int!): response
 
-    upsertPatientPrescription: String
-    deletePatientPrescription: String
+    addVisitPrescription(visit_id: Int!, prescription: Int!): response
+    updateVisitPrescription(id: Int!, prescription: Int): response
+    deleteVisitPrescription(id: Int!): response
 
-    addVisit: String
-    updateVisit: String
-  }
-
-  type userResponse {
-    code: Int!
-    success: Boolean!
-    message: String
-    data: user
+    addVisit(
+      patient: Int!
+      weight: String
+      height: String
+      temperature: String
+      bp: String
+      ecg: String
+      doctor_visited: Int
+      date: String
+    ): response
+    updateVisit(
+      id: Int!
+      weight: String
+      height: String
+      temperature: String
+      bp: String
+      ecg: String
+      doctor_visited: Int
+      date: String
+    ): response
   }
 
   type response {

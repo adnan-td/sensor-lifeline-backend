@@ -25,14 +25,35 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addAllergy?: Maybe<Response>;
   addDoctor?: Maybe<Response>;
   addPatient?: Maybe<Response>;
-  isAuthenticated?: Maybe<User>;
-  login?: Maybe<UserResponse>;
-  logout?: Maybe<Scalars['String']>;
-  register?: Maybe<UserResponse>;
+  addPatientAllergy?: Maybe<Response>;
+  addPrescription?: Maybe<Response>;
+  addTest?: Maybe<Response>;
+  addVisit?: Maybe<Response>;
+  addVisitPrescription?: Maybe<Response>;
+  addVisitTest?: Maybe<Response>;
+  deleteAllergy?: Maybe<Response>;
+  deletePatientAllergy?: Maybe<Response>;
+  deletePrescription?: Maybe<Response>;
+  deleteTest?: Maybe<Response>;
+  deleteVisitPrescription?: Maybe<Response>;
+  deleteVisitTest?: Maybe<Response>;
+  updateAllergy?: Maybe<Response>;
   updateDoctor?: Maybe<Response>;
   updatePatient?: Maybe<Response>;
+  updatePatientAllergy?: Maybe<Response>;
+  updatePrescription?: Maybe<Response>;
+  updateTest?: Maybe<Response>;
+  updateVisit?: Maybe<Response>;
+  updateVisitPrescription?: Maybe<Response>;
+  updateVisitTest?: Maybe<Response>;
+};
+
+
+export type MutationAddAllergyArgs = {
+  name?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -61,16 +82,83 @@ export type MutationAddPatientArgs = {
 };
 
 
-export type MutationLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+export type MutationAddPatientAllergyArgs = {
+  allergy: Scalars['Int'];
+  patient_id: Scalars['Int'];
 };
 
 
-export type MutationRegisterArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-  role?: InputMaybe<Scalars['String']>;
+export type MutationAddPrescriptionArgs = {
+  dosage: Scalars['String'];
+  drug: Scalars['String'];
+  interval: Scalars['String'];
+};
+
+
+export type MutationAddTestArgs = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationAddVisitArgs = {
+  bp?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  doctor_visited?: InputMaybe<Scalars['Int']>;
+  ecg?: InputMaybe<Scalars['String']>;
+  height?: InputMaybe<Scalars['String']>;
+  patient: Scalars['Int'];
+  temperature?: InputMaybe<Scalars['String']>;
+  weight?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationAddVisitPrescriptionArgs = {
+  prescription: Scalars['Int'];
+  visit_id: Scalars['Int'];
+};
+
+
+export type MutationAddVisitTestArgs = {
+  comments?: InputMaybe<Scalars['String']>;
+  date: Scalars['String'];
+  test: Scalars['Int'];
+  visit_id: Scalars['Int'];
+};
+
+
+export type MutationDeleteAllergyArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeletePatientAllergyArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeletePrescriptionArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeleteTestArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeleteVisitPrescriptionArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeleteVisitTestArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationUpdateAllergyArgs = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
 };
 
 
@@ -100,13 +188,64 @@ export type MutationUpdatePatientArgs = {
   state?: InputMaybe<Scalars['String']>;
 };
 
+
+export type MutationUpdatePatientAllergyArgs = {
+  allergy?: InputMaybe<Scalars['Int']>;
+  id: Scalars['Int'];
+  patient_id?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type MutationUpdatePrescriptionArgs = {
+  dosage?: InputMaybe<Scalars['String']>;
+  drug?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  interval?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateTestArgs = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+
+export type MutationUpdateVisitArgs = {
+  bp?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  doctor_visited?: InputMaybe<Scalars['Int']>;
+  ecg?: InputMaybe<Scalars['String']>;
+  height?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  temperature?: InputMaybe<Scalars['String']>;
+  weight?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateVisitPrescriptionArgs = {
+  id: Scalars['Int'];
+  prescription?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type MutationUpdateVisitTestArgs = {
+  comments?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  test?: InputMaybe<Scalars['Int']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   allergies?: Maybe<Array<Maybe<Allergy>>>;
   blood_groups?: Maybe<Array<Maybe<Blood_Group>>>;
   doctors?: Maybe<Array<Maybe<Doctor>>>;
+  isAuthenticated?: Maybe<User>;
+  login?: Maybe<UserResponse>;
+  logout?: Maybe<Scalars['String']>;
   patients?: Maybe<Array<Maybe<Patient>>>;
   prescription?: Maybe<Array<Maybe<Prescription>>>;
+  register?: Maybe<UserResponse>;
   tests?: Maybe<Array<Maybe<Test>>>;
   visits?: Maybe<Array<Maybe<Visit>>>;
   visits_by_doctor?: Maybe<Array<Maybe<Visit>>>;
@@ -118,8 +257,21 @@ export type QueryDoctorsArgs = {
 };
 
 
+export type QueryLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
 export type QueryPatientsArgs = {
   id?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryRegisterArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+  role?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -361,22 +513,42 @@ export type ResolversParentTypes = {
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, Partial<MutationAddAllergyArgs>>;
   addDoctor?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddDoctorArgs, 'branch' | 'email' | 'name'>>;
   addPatient?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPatientArgs, 'email' | 'name'>>;
-  isAuthenticated?: Resolver<Maybe<ResolversTypes['user']>, ParentType, ContextType>;
-  login?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
-  logout?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  register?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'email' | 'password'>>;
+  addPatientAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPatientAllergyArgs, 'allergy' | 'patient_id'>>;
+  addPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPrescriptionArgs, 'dosage' | 'drug' | 'interval'>>;
+  addTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, Partial<MutationAddTestArgs>>;
+  addVisit?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddVisitArgs, 'patient'>>;
+  addVisitPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddVisitPrescriptionArgs, 'prescription' | 'visit_id'>>;
+  addVisitTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddVisitTestArgs, 'date' | 'test' | 'visit_id'>>;
+  deleteAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteAllergyArgs, 'id'>>;
+  deletePatientAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeletePatientAllergyArgs, 'id'>>;
+  deletePrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeletePrescriptionArgs, 'id'>>;
+  deleteTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteTestArgs, 'id'>>;
+  deleteVisitPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteVisitPrescriptionArgs, 'id'>>;
+  deleteVisitTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteVisitTestArgs, 'id'>>;
+  updateAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateAllergyArgs, 'id' | 'name'>>;
   updateDoctor?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateDoctorArgs, 'id'>>;
   updatePatient?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePatientArgs, 'id'>>;
+  updatePatientAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePatientAllergyArgs, 'id'>>;
+  updatePrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePrescriptionArgs, 'id'>>;
+  updateTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateTestArgs, 'id' | 'name'>>;
+  updateVisit?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateVisitArgs, 'id'>>;
+  updateVisitPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateVisitPrescriptionArgs, 'id'>>;
+  updateVisitTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateVisitTestArgs, 'id'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   allergies?: Resolver<Maybe<Array<Maybe<ResolversTypes['allergy']>>>, ParentType, ContextType>;
   blood_groups?: Resolver<Maybe<Array<Maybe<ResolversTypes['blood_group']>>>, ParentType, ContextType>;
   doctors?: Resolver<Maybe<Array<Maybe<ResolversTypes['doctor']>>>, ParentType, ContextType, Partial<QueryDoctorsArgs>>;
+  isAuthenticated?: Resolver<Maybe<ResolversTypes['user']>, ParentType, ContextType>;
+  login?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryLoginArgs, 'email' | 'password'>>;
+  logout?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   patients?: Resolver<Maybe<Array<Maybe<ResolversTypes['patient']>>>, ParentType, ContextType, Partial<QueryPatientsArgs>>;
   prescription?: Resolver<Maybe<Array<Maybe<ResolversTypes['prescription']>>>, ParentType, ContextType>;
+  register?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryRegisterArgs, 'email' | 'password'>>;
   tests?: Resolver<Maybe<Array<Maybe<ResolversTypes['test']>>>, ParentType, ContextType>;
   visits?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType, Partial<QueryVisitsArgs>>;
   visits_by_doctor?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType, RequireFields<QueryVisits_By_DoctorArgs, 'id'>>;
