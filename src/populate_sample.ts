@@ -12,8 +12,8 @@ import tl from "./sample/tests_list.json";
 import { BloodGroup } from "./models/blood_group";
 import { Tests, TestsList } from "./models/tests";
 import { Allergies, AllergiesList } from "./models/allergies";
-import { Prescription, PrescriptionList } from "./models/prescriptions";
-import { Patient } from "./models/patient";
+import { Prescriptions, PrescriptionList } from "./models/prescriptions";
+import { Patients } from "./models/patient";
 import { Visits } from "./models/visits";
 import { Doctors } from "./models/doctor";
 
@@ -21,8 +21,8 @@ export default function TestingData() {
   BloodGroup.bulkCreate(a);
   Tests.bulkCreate(b);
   Allergies.bulkCreate(c);
-  Prescription.bulkCreate(d);
-  Patient.bulkCreate(pat);
+  Prescriptions.bulkCreate(d);
+  Patients.bulkCreate(pat);
   Doctors.bulkCreate(doc);
   Visits.bulkCreate(vis);
   PrescriptionList.bulkCreate(pl);

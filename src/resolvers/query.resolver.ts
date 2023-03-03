@@ -2,8 +2,8 @@ import { QueryResolvers } from "../types/graphql";
 import { Allergies } from "../models/allergies";
 import { BloodGroup } from "../models/blood_group";
 import { Doctors } from "../models/doctor";
-import { Patient } from "../models/patient";
-import { Prescription } from "../models/prescriptions";
+import { Patients } from "../models/patient";
+import { Prescriptions } from "../models/prescriptions";
 import { Tests } from "../models/tests";
 import { Visits } from "../models/visits";
 import { isAuthenticatedResolver, loginResolver, logoutResolver, registerResolver } from "./auth";
@@ -19,7 +19,7 @@ export const Query: QueryResolvers = {
     return Tests.findAll();
   },
   prescription: () => {
-    return Prescription.findAll();
+    return Prescriptions.findAll();
   },
   visits: (_, args) => {
     if (args.id) {
@@ -33,13 +33,13 @@ export const Query: QueryResolvers = {
   },
   patients: (_, args) => {
     if (args.id) {
-      return Patient.findAll({
+      return Patients.findAll({
         where: {
           id: args.id,
         },
       });
     }
-    return Patient.findAll();
+    return Patients.findAll();
   },
   doctors: (_, args) => {
     if (args.id) {

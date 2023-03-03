@@ -1,8 +1,12 @@
-import { DataTypes } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 import db from "../sequelize";
 
-export const BloodGroup = db.define(
-  "blood_group",
+export class BloodGroup extends Model {
+  declare id: number;
+  declare name: string;
+}
+
+BloodGroup.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,5 +18,8 @@ export const BloodGroup = db.define(
       allowNull: false,
     },
   },
-  {}
+  {
+    tableName: "blood_group",
+    sequelize: db,
+  }
 );

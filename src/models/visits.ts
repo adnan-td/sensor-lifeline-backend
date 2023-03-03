@@ -1,10 +1,21 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../sequelize";
 import { Doctors } from "./doctor";
-import { Patient } from "./patient";
+import { Patients } from "./patient";
 
-export const Visits = db.define(
-  "visits",
+export class Visits extends Model {
+  declare id: number;
+  declare patient: number;
+  declare date: string;
+  declare weight: string;
+  declare height: string;
+  declare temperature: string;
+  declare bp: string;
+  declare ecg: string;
+  declare doctor_visited: number;
+}
+
+Visits.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,7 +26,7 @@ export const Visits = db.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Patient,
+        model: Patients,
         key: "id",
       },
     },
@@ -47,5 +58,8 @@ export const Visits = db.define(
       },
     },
   },
-  {}
+  {
+    tableName: "visits",
+    sequelize: db,
+  }
 );

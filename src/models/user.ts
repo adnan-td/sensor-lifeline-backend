@@ -1,8 +1,14 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../sequelize";
 
-export const Users = db.define(
-  "user",
+export class Users extends Model {
+  declare id: number;
+  declare email: string;
+  declare password: string;
+  declare role: string;
+}
+
+Users.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,5 +29,8 @@ export const Users = db.define(
       defaultValue: "patient",
     },
   },
-  {}
+  {
+    tableName: "user",
+    sequelize: db,
+  }
 );

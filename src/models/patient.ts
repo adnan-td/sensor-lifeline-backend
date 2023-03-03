@@ -1,9 +1,27 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../sequelize";
 import { BloodGroup } from "./blood_group";
 
-export const Patient = db.define(
-  "patient",
+export class Patients extends Model {
+  declare id: number;
+  declare name: string;
+  declare uid: number;
+  declare aadhar: string;
+  declare email: string;
+  declare father_name: string;
+  declare mother_name: string;
+  declare address: string;
+  declare date_of_birth: string;
+  declare blood_group: number;
+  declare current_weight: string;
+  declare current_height: string;
+  declare gender: string;
+  declare city: string;
+  declare pin: number;
+  declare state: string;
+}
+
+Patients.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -67,5 +85,8 @@ export const Patient = db.define(
       type: DataTypes.STRING(45),
     },
   },
-  {}
+  {
+    tableName: "patient",
+    sequelize: db,
+  }
 );

@@ -1,5 +1,5 @@
 import { Allergies, AllergiesList } from "../models/allergies";
-import { Prescription, PrescriptionList } from "../models/prescriptions";
+import { Prescriptions, PrescriptionList } from "../models/prescriptions";
 import { Tests, TestsList } from "../models/tests";
 import { Visits } from "../models/visits";
 import { MutationResolvers } from "../types/graphql";
@@ -49,13 +49,13 @@ export const Mutation: MutationResolvers = {
   },
 
   addPrescription: async (parent, data) => {
-    return addIntoModel(Prescription, data);
+    return addIntoModel(Prescriptions, data);
   },
   updatePrescription: async (parent, data) => {
-    return updateModel(Prescription, data);
+    return updateModel(Prescriptions, data);
   },
   deletePrescription: async (parent, { id }) => {
-    return deleteModel(Prescription, id);
+    return deleteModel(Prescriptions, id);
   },
   addVisitPrescription: async (parent, data) => {
     return addIntoModel(PrescriptionList, data);
