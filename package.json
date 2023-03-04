@@ -7,9 +7,9 @@
     "stop": "pm2 stop all",
     "dockerup": "docker-compose -f docker.yaml up -d",
     "dockerdown": "docker-compose -f docker.yaml down",
-    "dev": "yarn generate & nodemon ./server.ts",
-    "build": "yarn generate & tsc -p .",
-    "deploy": "yarn install & yarn build",
+    "dev": "yarn generate && nodemon ./server.ts",
+    "build": "yarn generate && tsc -p .",
+    "deploy": "yarn install && yarn build",
     "generate": "graphql-codegen --config codegen.config.ts"
   },
   "license": "MIT",
