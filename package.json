@@ -29,7 +29,8 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.0.1",
     "pm2": "^5.2.2",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "3.2.1",
