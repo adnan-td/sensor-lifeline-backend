@@ -8,6 +8,8 @@ This is a typescript project using graphql and expressjs for providing backend s
 
 ![image](https://user-images.githubusercontent.com/78212328/222967386-5b769720-05bb-450e-a4df-9a4466ea3e21.png)
 
+![image](https://user-images.githubusercontent.com/78212328/222967941-b7abfd0e-f2e2-4502-8e5e-7219bcef109b.png)
+
 ## Installation of Project
 
 1. Clone/fork the repository
