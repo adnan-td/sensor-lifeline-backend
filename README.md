@@ -2,6 +2,17 @@
 
 This is a typescript project using graphql and expressjs for providing backend service for POC project.
 
+## Features
+Core features include:
+1. Sequelize dynamic models
+2. Apollo Graphql Server
+3. JWT authentication
+4. Authorisation using graphql-shields
+5. Extensive Typescript Support
+6. Docker for easier installation
+7. Image Uploads
+8. Testing with Jest
+
 <!-- Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a> -->
 
 ## Here's how it looks-like
@@ -11,14 +22,10 @@ This is a typescript project using graphql and expressjs for providing backend s
 ![image](https://user-images.githubusercontent.com/78212328/222967941-b7abfd0e-f2e2-4502-8e5e-7219bcef109b.png)
 
 ## Installation of Project
+[Follow this guide](./installation.md)
 
-1. Clone/fork the repository
-2. Install Nodejs on your device
-3. Install Docker (Skip - if mysql already installed)
-4. Install Yarn by `npm install yarn -g` (Skip - if yarn already installed)
-5. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file
-
-In the project directory, you can run:
+## Basic Project Commands:
+In the project directory, you can run
 
 ### `yarn dockerup`
 
@@ -35,19 +42,3 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
-
-### `yarn build`
-
-Compile the typescript files in the project directory into javascript code and places it inside dist folder.
-
-### `yarn start`
-
-Starts the server.js file, created by the build command, in production mode.
-
-### `yarn stop`
-
-Stops the production server if any at all is running.
-
-### `yarn dockerdown`
-
-Shuts down the running docker containers.
