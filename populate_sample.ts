@@ -9,13 +9,13 @@ import pl from "./sample/prescription_list.json";
 import al from "./sample/allergies_list.json";
 import tl from "./sample/tests_list.json";
 
-import { BloodGroup } from "./models/blood_group";
-import { Tests, TestsList } from "./models/tests";
-import { Allergies, AllergiesList } from "./models/allergies";
-import { Prescriptions, PrescriptionList } from "./models/prescriptions";
-import { Patients } from "./models/patient";
-import { Visits } from "./models/visits";
-import { Doctors } from "./models/doctor";
+import { BloodGroup } from "./src/models/blood_group";
+import { Tests, TestsList } from "./src/models/tests";
+import { Allergies, AllergiesList } from "./src/models/allergies";
+import { Prescriptions, PrescriptionList } from "./src/models/prescriptions";
+import { Patients } from "./src/models/patient";
+import { Visits } from "./src/models/visits";
+import { Doctors } from "./src/models/doctor";
 
 export default function TestingData() {
   BloodGroup.bulkCreate(a);

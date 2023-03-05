@@ -2,7 +2,7 @@
 
 This is a typescript project using graphql and expressjs for providing backend service for POC project.
 
-Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a>
+<!-- Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.adnanshusain.in</a> -->
 
 ## Here's how it looks-like
 
@@ -15,7 +15,8 @@ Checkout the live project demo <a href="http://poc.adnanshusain.in/graphql">poc.
 1. Clone/fork the repository
 2. Install Nodejs on your device
 3. Install Docker (Skip - if mysql already installed)
-4. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file
+4. Install Yarn by `npm install yarn -g` (Skip - if yarn already installed)
+5. Create a `.env` file in the root folder of the project, copy and paste the `.env.sample` into the .env file
 
 In the project directory, you can run:
 
