@@ -6,9 +6,7 @@ This is a typescript project using graphql and expressjs for providing backend s
 
 ## Here's how it looks-like
 
-![image](https://user-images.githubusercontent.com/78212328/218540999-de800d67-f0ba-4201-b273-baf9eb08b534.png)
-
-![image](https://user-images.githubusercontent.com/78212328/218540027-e8734eca-951a-41ed-ae9b-4fe1a55fdf7f.png)
+![image](https://user-images.githubusercontent.com/78212328/222967386-5b769720-05bb-450e-a4df-9a4466ea3e21.png)
 
 ## Installation of Project
 
