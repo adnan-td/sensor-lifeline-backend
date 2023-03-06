@@ -6,6 +6,7 @@ import type { Doctors } from '../models/doctor';
 import type { Tests, TestsList } from '../models/tests';
 import type { Visits } from '../models/visits';
 import type { Patients } from '../models/patient';
+import type { Operators } from '../models/operators';
 import type { Users } from '../models/user';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -27,6 +28,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addAllergy?: Maybe<Response>;
   addDoctor?: Maybe<Response>;
+  addOperator?: Maybe<Response>;
   addPatient?: Maybe<Response>;
   addPatientAllergy?: Maybe<Response>;
   addPrescription?: Maybe<Response>;
@@ -42,6 +44,7 @@ export type Mutation = {
   deleteVisitTest?: Maybe<Response>;
   updateAllergy?: Maybe<Response>;
   updateDoctor?: Maybe<Response>;
+  updateOperator?: Maybe<Response>;
   updatePatient?: Maybe<Response>;
   updatePatientAllergy?: Maybe<Response>;
   updatePrescription?: Maybe<Response>;
@@ -61,6 +64,21 @@ export type MutationAddDoctorArgs = {
   branch: Scalars['String'];
   email: Scalars['String'];
   name: Scalars['String'];
+};
+
+
+export type MutationAddOperatorArgs = {
+  aadhar?: InputMaybe<Scalars['String']>;
+  address?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  date_of_birth?: InputMaybe<Scalars['String']>;
+  email: Scalars['String'];
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  mother_name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  pin?: InputMaybe<Scalars['Int']>;
+  state?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -170,6 +188,22 @@ export type MutationUpdateDoctorArgs = {
 };
 
 
+export type MutationUpdateOperatorArgs = {
+  aadhar?: InputMaybe<Scalars['String']>;
+  address?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  date_of_birth?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  mother_name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  pin?: InputMaybe<Scalars['Int']>;
+  state?: InputMaybe<Scalars['String']>;
+};
+
+
 export type MutationUpdatePatientArgs = {
   aadhar?: InputMaybe<Scalars['String']>;
   address?: InputMaybe<Scalars['String']>;
@@ -243,12 +277,12 @@ export type Query = {
   isAuthenticated?: Maybe<User>;
   login?: Maybe<UserResponse>;
   logout?: Maybe<Scalars['String']>;
+  operatorById?: Maybe<Operator>;
   patients?: Maybe<Array<Maybe<Patient>>>;
   prescription?: Maybe<Array<Maybe<Prescription>>>;
   register?: Maybe<UserResponse>;
   tests?: Maybe<Array<Maybe<Test>>>;
   visits?: Maybe<Array<Maybe<Visit>>>;
-  visits_by_doctor?: Maybe<Array<Maybe<Visit>>>;
 };
 
 
@@ -260,6 +294,11 @@ export type QueryDoctorsArgs = {
 export type QueryLoginArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+
+export type QueryOperatorByIdArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -277,11 +316,6 @@ export type QueryRegisterArgs = {
 
 export type QueryVisitsArgs = {
   id?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryVisits_By_DoctorArgs = {
-  id: Scalars['Int'];
 };
 
 export type Allergy = {
@@ -302,6 +336,25 @@ export type Doctor = {
   email: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
+  visits?: Maybe<Array<Maybe<Visit>>>;
+};
+
+export type Operator = {
+  __typename?: 'operator';
+  aadhar?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  date_of_birth?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  father_name?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  mother_name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  pin?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  uid: Scalars['ID'];
+  visits?: Maybe<Array<Maybe<Visit>>>;
 };
 
 export type Patient = {
@@ -477,6 +530,7 @@ export type ResolversTypes = {
   allergy: ResolverTypeWrapper<Allergies>;
   blood_group: ResolverTypeWrapper<BloodGroup>;
   doctor: ResolverTypeWrapper<Doctors>;
+  operator: ResolverTypeWrapper<Operators>;
   patient: ResolverTypeWrapper<Patients>;
   patient_allergy: ResolverTypeWrapper<AllergiesList>;
   patient_prescription: ResolverTypeWrapper<PrescriptionList>;
@@ -500,6 +554,7 @@ export type ResolversParentTypes = {
   allergy: Allergies;
   blood_group: BloodGroup;
   doctor: Doctors;
+  operator: Operators;
   patient: Patients;
   patient_allergy: AllergiesList;
   patient_prescription: PrescriptionList;
@@ -515,6 +570,7 @@ export type ResolversParentTypes = {
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, Partial<MutationAddAllergyArgs>>;
   addDoctor?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddDoctorArgs, 'branch' | 'email' | 'name'>>;
+  addOperator?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddOperatorArgs, 'email' | 'name'>>;
   addPatient?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPatientArgs, 'email' | 'name'>>;
   addPatientAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPatientAllergyArgs, 'allergy' | 'patient_id'>>;
   addPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationAddPrescriptionArgs, 'dosage' | 'drug' | 'interval'>>;
@@ -530,6 +586,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteVisitTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteVisitTestArgs, 'id'>>;
   updateAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateAllergyArgs, 'id' | 'name'>>;
   updateDoctor?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateDoctorArgs, 'id'>>;
+  updateOperator?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, Partial<MutationUpdateOperatorArgs>>;
   updatePatient?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePatientArgs, 'id'>>;
   updatePatientAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePatientAllergyArgs, 'id'>>;
   updatePrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdatePrescriptionArgs, 'id'>>;
@@ -546,12 +603,12 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   isAuthenticated?: Resolver<Maybe<ResolversTypes['user']>, ParentType, ContextType>;
   login?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryLoginArgs, 'email' | 'password'>>;
   logout?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  operatorById?: Resolver<Maybe<ResolversTypes['operator']>, ParentType, ContextType, RequireFields<QueryOperatorByIdArgs, 'id'>>;
   patients?: Resolver<Maybe<Array<Maybe<ResolversTypes['patient']>>>, ParentType, ContextType, Partial<QueryPatientsArgs>>;
   prescription?: Resolver<Maybe<Array<Maybe<ResolversTypes['prescription']>>>, ParentType, ContextType>;
   register?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryRegisterArgs, 'email' | 'password'>>;
   tests?: Resolver<Maybe<Array<Maybe<ResolversTypes['test']>>>, ParentType, ContextType>;
   visits?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType, Partial<QueryVisitsArgs>>;
-  visits_by_doctor?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType, RequireFields<QueryVisits_By_DoctorArgs, 'id'>>;
 };
 
 export type AllergyResolvers<ContextType = any, ParentType extends ResolversParentTypes['allergy'] = ResolversParentTypes['allergy']> = {
@@ -571,6 +628,25 @@ export type DoctorResolvers<ContextType = any, ParentType extends ResolversParen
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  visits?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type OperatorResolvers<ContextType = any, ParentType extends ResolversParentTypes['operator'] = ResolversParentTypes['operator']> = {
+  aadhar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  city?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  date_of_birth?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  father_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  gender?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  mother_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  pin?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  state?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  uid?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  visits?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -675,6 +751,7 @@ export type Resolvers<ContextType = any> = {
   allergy?: AllergyResolvers<ContextType>;
   blood_group?: Blood_GroupResolvers<ContextType>;
   doctor?: DoctorResolvers<ContextType>;
+  operator?: OperatorResolvers<ContextType>;
   patient?: PatientResolvers<ContextType>;
   patient_allergy?: Patient_AllergyResolvers<ContextType>;
   patient_prescription?: Patient_PrescriptionResolvers<ContextType>;

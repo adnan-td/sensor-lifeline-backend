@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../sequelize";
 import { Doctors } from "./doctor";
+import { Operators } from "./operators";
 import { Patients } from "./patient";
 
 export class Visits extends Model {
@@ -13,6 +14,7 @@ export class Visits extends Model {
   declare bp: string;
   declare ecg: string;
   declare doctor_visited: number;
+  declare operator: number;
 }
 
 Visits.init(
@@ -27,6 +29,14 @@ Visits.init(
       allowNull: false,
       references: {
         model: Patients,
+        key: "id",
+      },
+    },
+    operator: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Operators,
         key: "id",
       },
     },

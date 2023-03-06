@@ -29,7 +29,7 @@ export const permissions = shield({
     doctors: isAuthenticated,
     visits: isAuthenticated,
     patients: isAuthenticated,
-    visits_by_doctor: isAuthenticated,
+    operatorById: isAuthenticated,
   },
   Mutation: {
     addDoctor: and(isAuthenticated, isDoctor),
@@ -64,5 +64,8 @@ export const permissions = shield({
 
     addVisit: isAuthAndDoctorOrOperator,
     updateVisit: isAuthAndDoctorOrOperator,
+
+    addOperator: isAuthAndDoctorOrOperator,
+    updateOperator: isAuthAndDoctorOrOperator,
   },
 });

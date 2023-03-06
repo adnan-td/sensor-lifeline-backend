@@ -21,10 +21,15 @@ db.query("show tables").then(function (rows) {
   } else {
     db.dropAllSchemas({}).then(() => {
       db.query("SET FOREIGN_KEY_CHECKS = 0", { raw: true }).then(() => {
-        db.sync({ force: true }).then(function () {
-          TestingData();
-          startServer();
-        });
+        try {
+          db.sync({ force: true }).then(function () {
+            TestingData();
+            startServer();
+          });
+        } catch (err) {
+          db.dropAllSchemas({});
+          console.log(err);
+        }
       });
     });
   }

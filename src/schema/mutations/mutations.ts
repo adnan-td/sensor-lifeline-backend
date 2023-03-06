@@ -82,6 +82,34 @@ export const Mutations = gql`
       doctor_visited: Int
       date: String
     ): response
+
+    addOperator(
+      name: String!
+      aadhar: String
+      email: String!
+      father_name: String
+      mother_name: String
+      date_of_birth: String
+      gender: String
+      address: String
+      state: String
+      city: String
+      pin: Int
+    ): response
+    updateOperator(
+      id: Int
+      name: String
+      aadhar: String
+      email: String
+      father_name: String
+      mother_name: String
+      date_of_birth: String
+      gender: String
+      address: String
+      state: String
+      city: String
+      pin: Int
+    ): response
   }
 
   type response {

@@ -7,6 +7,7 @@ import { Prescriptions } from "../models/prescriptions";
 import { Tests } from "../models/tests";
 import { Visits } from "../models/visits";
 import { isAuthenticatedResolver, loginResolver, logoutResolver, registerResolver } from "./auth";
+import { Operators } from "../models/operators";
 
 export const Query: QueryResolvers = {
   blood_groups: () => {
@@ -51,10 +52,10 @@ export const Query: QueryResolvers = {
     }
     return Doctors.findAll();
   },
-  visits_by_doctor: (_, arg) => {
-    return Visits.findAll({
+  operatorById: (_, { id }) => {
+    return Operators.findOne({
       where: {
-        doctor_visited: arg.id,
+        id: id,
       },
     });
   },

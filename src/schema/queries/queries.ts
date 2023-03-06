@@ -13,7 +13,7 @@ export const Queries = gql`
     doctors(id: Int): [doctor]
     visits(id: Int): [visit]
     patients(id: Int): [patient]
-    visits_by_doctor(id: Int!): [visit]
+    operatorById(id: Int!): operator
   }
 
   type userResponse {

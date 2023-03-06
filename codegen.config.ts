@@ -21,6 +21,7 @@ const config: CodegenConfig = {
           patient_test: "../models/tests#TestsList",
           visit: "../models/visits#Visits",
           patient: "../models/patient#Patients",
+          operator: "../models/operators#Operators",
           user: "../models/user#Users",
         },
         useTypeImports: true,

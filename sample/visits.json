@@ -1,6 +1,7 @@
 [
   {
     "patient": 1,
+    "operator": 1,
     "date": "2023-02-01",
     "weight": 70,
     "height": 170,
@@ -9,7 +10,8 @@
     "doctor_visited": 1
   },
   {
-    "patient": 2,
+    "patient": 1,
+    "operator": 2,
     "date": "2023-02-01",
     "weight": 65,
     "height": 165,
@@ -19,6 +21,7 @@
   },
   {
     "patient": 3,
+    "operator": 2,
     "date": "2023-02-01",
     "weight": 68,
     "height": 168,
@@ -28,6 +31,7 @@
   },
   {
     "patient": 4,
+    "operator": 2,
     "date": "2023-02-01",
     "weight": 72,
     "height": 172,
@@ -37,6 +41,7 @@
   },
   {
     "patient": 5,
+    "operator": 3,
     "date": "2023-02-01",
     "weight": 75,
     "height": 175,

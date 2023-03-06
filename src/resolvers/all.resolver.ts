@@ -90,4 +90,22 @@ export const allResolvers: Resolvers = {
       });
     },
   },
+  doctor: {
+    visits: (parent) => {
+      return Visits.findAll({
+        where: {
+          doctor_visited: parent.id,
+        },
+      });
+    },
+  },
+  operator: {
+    visits: (parent) => {
+      return Visits.findAll({
+        where: {
+          operator: parent.id,
+        },
+      });
+    },
+  },
 };

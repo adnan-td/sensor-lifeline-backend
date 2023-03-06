@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "uid": "43211234",
+    "name": "John Smith",
+    "aadhar": "123456789012",
+    "email": "johnsmith@example.com",
+    "father_name": "David Smith",
+    "mother_name": "Mary Smith",
+    "date_of_birth": "1990-01-01",
+    "gender": "male",
+    "address": "123 Main St",
+    "state": "California",
+    "city": "San Francisco",
+    "pin": "12345"
+  },
+  {
+    "id": 2,
+    "uid": "432157634",
+    "name": "Jane Doe",
+    "aadhar": "987654321098",
+    "email": "janedoe@example.com",
+    "father_name": "Michael Doe",
+    "mother_name": "Sarah Doe",
+    "date_of_birth": "1995-05-05",
+    "gender": "female",
+    "address": "456 Oak Ave",
+    "state": "New York",
+    "city": "New York City",
+    "pin": "67890"
+  },
+  {
+    "id": 3,
+    "uid": "43961234",
+    "name": "Bob Johnson",
+    "aadhar": "456789012345",
+    "email": "bjohnson@example.com",
+    "father_name": "George Johnson",
+    "mother_name": "Karen Johnson",
+    "date_of_birth": "1985-12-31",
+    "gender": "male",
+    "address": "789 Elm St",
+    "state": "Texas",
+    "city": "Houston",
+    "pin": "45678"
+  }
+]

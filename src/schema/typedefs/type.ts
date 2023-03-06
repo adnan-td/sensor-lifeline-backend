@@ -28,6 +28,7 @@ export const AllTypes = gql`
     name: String!
     email: String!
     branch: String!
+    visits: [visit]
   }
 
   type prescription {
@@ -88,6 +89,23 @@ export const AllTypes = gql`
     city: String
     pin: String
     state: String
+    visits: [visit]
+  }
+
+  type operator {
+    id: ID!
+    uid: ID!
+    name: String
+    email: String
+    aadhar: String
+    father_name: String
+    mother_name: String
+    date_of_birth: String
+    gender: String
+    address: String
+    state: String
+    city: String
+    pin: String
     visits: [visit]
   }
 `;
