@@ -1,10 +1,10 @@
 import { Users } from "../../models/user";
 import * as bcrypt from "bcrypt";
-import { QueryResolvers } from "../../types/graphql";
+import { QueryResolvers, MutationResolvers } from "../../types/graphql";
 import { createTokens, refreshOptions, accessOptions } from "../../auth";
 import { isValidPassword, userResponse, isValidEmail } from "../utils";
 
-export const registerResolver: QueryResolvers["register"] = async (
+export const registerResolver: MutationResolvers["register"] = async (
   parent,
   { email, password, role }
 ) => {
@@ -28,7 +28,7 @@ export const registerResolver: QueryResolvers["register"] = async (
   return userResponse(400, false, "Enter Valid email and password!");
 };
 
-export const loginResolver: QueryResolvers["login"] = async (
+export const loginResolver: MutationResolvers["login"] = async (
   parent,
   { email, password },
   { res }

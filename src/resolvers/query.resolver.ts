@@ -6,7 +6,7 @@ import { Patients } from "../models/patient";
 import { Prescriptions } from "../models/prescriptions";
 import { Tests } from "../models/tests";
 import { Visits } from "../models/visits";
-import { isAuthenticatedResolver, loginResolver, logoutResolver, registerResolver } from "./auth";
+import { isAuthenticatedResolver, logoutResolver } from "./auth";
 import { Operators } from "../models/operators";
 
 export const Query: QueryResolvers = {
@@ -59,8 +59,6 @@ export const Query: QueryResolvers = {
       },
     });
   },
-  register: registerResolver,
-  login: loginResolver,
   isAuthenticated: isAuthenticatedResolver,
   logout: logoutResolver,
 };

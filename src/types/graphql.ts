@@ -42,6 +42,8 @@ export type Mutation = {
   deleteTest?: Maybe<Response>;
   deleteVisitPrescription?: Maybe<Response>;
   deleteVisitTest?: Maybe<Response>;
+  login?: Maybe<UserResponse>;
+  register?: Maybe<UserResponse>;
   updateAllergy?: Maybe<Response>;
   updateDoctor?: Maybe<Response>;
   updateOperator?: Maybe<Response>;
@@ -174,6 +176,19 @@ export type MutationDeleteVisitTestArgs = {
 };
 
 
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationRegisterArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+  role?: InputMaybe<Scalars['String']>;
+};
+
+
 export type MutationUpdateAllergyArgs = {
   id: Scalars['Int'];
   name: Scalars['String'];
@@ -275,12 +290,10 @@ export type Query = {
   blood_groups?: Maybe<Array<Maybe<Blood_Group>>>;
   doctors?: Maybe<Array<Maybe<Doctor>>>;
   isAuthenticated?: Maybe<User>;
-  login?: Maybe<UserResponse>;
   logout?: Maybe<Scalars['String']>;
   operatorById?: Maybe<Operator>;
   patients?: Maybe<Array<Maybe<Patient>>>;
   prescription?: Maybe<Array<Maybe<Prescription>>>;
-  register?: Maybe<UserResponse>;
   tests?: Maybe<Array<Maybe<Test>>>;
   visits?: Maybe<Array<Maybe<Visit>>>;
 };
@@ -291,12 +304,6 @@ export type QueryDoctorsArgs = {
 };
 
 
-export type QueryLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-};
-
-
 export type QueryOperatorByIdArgs = {
   id: Scalars['Int'];
 };
@@ -304,13 +311,6 @@ export type QueryOperatorByIdArgs = {
 
 export type QueryPatientsArgs = {
   id?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryRegisterArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-  role?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -584,6 +584,8 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteTestArgs, 'id'>>;
   deleteVisitPrescription?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteVisitPrescriptionArgs, 'id'>>;
   deleteVisitTest?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationDeleteVisitTestArgs, 'id'>>;
+  login?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
+  register?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'email' | 'password'>>;
   updateAllergy?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateAllergyArgs, 'id' | 'name'>>;
   updateDoctor?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, RequireFields<MutationUpdateDoctorArgs, 'id'>>;
   updateOperator?: Resolver<Maybe<ResolversTypes['response']>, ParentType, ContextType, Partial<MutationUpdateOperatorArgs>>;
@@ -601,12 +603,10 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   blood_groups?: Resolver<Maybe<Array<Maybe<ResolversTypes['blood_group']>>>, ParentType, ContextType>;
   doctors?: Resolver<Maybe<Array<Maybe<ResolversTypes['doctor']>>>, ParentType, ContextType, Partial<QueryDoctorsArgs>>;
   isAuthenticated?: Resolver<Maybe<ResolversTypes['user']>, ParentType, ContextType>;
-  login?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryLoginArgs, 'email' | 'password'>>;
   logout?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   operatorById?: Resolver<Maybe<ResolversTypes['operator']>, ParentType, ContextType, RequireFields<QueryOperatorByIdArgs, 'id'>>;
   patients?: Resolver<Maybe<Array<Maybe<ResolversTypes['patient']>>>, ParentType, ContextType, Partial<QueryPatientsArgs>>;
   prescription?: Resolver<Maybe<Array<Maybe<ResolversTypes['prescription']>>>, ParentType, ContextType>;
-  register?: Resolver<Maybe<ResolversTypes['userResponse']>, ParentType, ContextType, RequireFields<QueryRegisterArgs, 'email' | 'password'>>;
   tests?: Resolver<Maybe<Array<Maybe<ResolversTypes['test']>>>, ParentType, ContextType>;
   visits?: Resolver<Maybe<Array<Maybe<ResolversTypes['visit']>>>, ParentType, ContextType, Partial<QueryVisitsArgs>>;
 };

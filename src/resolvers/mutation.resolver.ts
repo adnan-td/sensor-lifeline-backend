@@ -3,6 +3,7 @@ import { Prescriptions, PrescriptionList } from "../models/prescriptions";
 import { Tests, TestsList } from "../models/tests";
 import { Visits } from "../models/visits";
 import { MutationResolvers } from "../types/graphql";
+import { loginResolver, registerResolver } from "./auth";
 import { doctorMutation } from "./mutation/doctor";
 import { patientMutation } from "./mutation/patient";
 import { addIntoModel, deleteModel, updateModel } from "./utils";
@@ -73,4 +74,7 @@ export const Mutation: MutationResolvers = {
   updateVisit: async (parent, data) => {
     return updateModel(Visits, data);
   },
+
+  register: registerResolver,
+  login: loginResolver,
 };

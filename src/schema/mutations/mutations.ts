@@ -2,6 +2,9 @@ import { gql } from "apollo-server-express";
 
 export const Mutations = gql`
   type Mutation {
+    register(email: String!, password: String!, role: String): userResponse
+    login(email: String!, password: String!): userResponse
+
     addDoctor(name: String!, email: String!, branch: String!): response
     updateDoctor(id: Int!, name: String, email: String, branch: String): response
     addPatient(

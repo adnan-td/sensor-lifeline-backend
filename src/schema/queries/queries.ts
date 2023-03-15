@@ -2,8 +2,6 @@ import { gql } from "apollo-server-express";
 
 export const Queries = gql`
   type Query {
-    register(email: String!, password: String!, role: String): userResponse
-    login(email: String!, password: String!): userResponse
     isAuthenticated: user
     logout: String
     blood_groups: [blood_group]
